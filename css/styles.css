@@ -21,6 +21,35 @@ body {
   text-align: right;
 }
 
+#user_img {
+  border-radius: 50%;
+}
+#user_img_container {
+  border: 5px solid red;
+  display: flex;
+  justify-content: center;
+}
+#user_container {
+  border: 5px solid blue;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+#user_account_info {
+  border: 5px solid purple;
+  margin-top: 2%;
+}
+#service_drop_down_menu {
+  border: 5px solid yellow;
+  display: flex;
+  justify-content: center;
+}
+#history_container {
+  border: 5px solid green;
+}
+#booked_services {
+  border: 5px solid orange;
+}
 #card_container {
   display: flex;
   flex-direction: column;
@@ -42,40 +71,38 @@ body {
 #boarding_card {
   position: relative;
   margin-top: 30px;
-
 }
 /* create a card class for the three cards to edit it all at once */
 .services-card {
-  background-color: #59504C;
+  background-color: #59504c;
   color: white;
 }
 .list-group-item {
-  background-color: #59504C;
+  background-color: #59504c;
   color: white;
 }
 .btn-services {
   width: 15rem;
-  background-color: #333333 ;
+  background-color: #333333;
 }
 .button-container {
   text-align: center;
 }
 
 body {
-  background-color: #F7F5F5;
+  background-color: #f7f5f5;
 }
 #heading_div {
-  background-color: #59504C;
+  background-color: #59504c;
   text-align: center;
   color: white;
 }
 
 body {
-  background-color: #F7F5F5;
+  background-color: #f7f5f5;
 }
 #heading_div {
-  background-color: #59504C;
+  background-color: #59504c;
   text-align: center;
   color: white;
 }
-
