@@ -1,4 +1,22 @@
-/* #account_container {
-  position: absolute;
-  left: 950px;
-} */
+#home_img {
+  height: 700px;
+  width: 98%;
+  margin: 1% 1% 1% 1%;
+  background-image: url("../images/dog_welcome.jpg");
+  background-position: 50% 50%;
+  object-fit: cover;
+  background-size: cover;
+}
+
+#home_welcome_banner {
+  text-align: center;
+}
+body {
+  background-color: #f7f5f5;
+}
+.home-text {
+  margin-top: 5%;
+  margin-left: 58%;
+  color: white;
+  text-align: right;
+}
