@@ -25,33 +25,27 @@ body {
   border-radius: 50%;
 }
 #user_img_container {
-  border: 5px solid red;
   display: flex;
   justify-content: center;
   background-color: #59504c;
 }
 #user_container {
-  border: 5px solid blue;
   display: flex;
   align-items: center;
   flex-direction: column;
   background-color: #59504c;
 }
 #user_account_info {
-  border: 5px solid purple;
   margin-top: 2%;
 }
 #service_drop_down_menu {
-  border: 5px solid yellow;
   display: flex;
   justify-content: center;
 }
 #history_container {
-  border: 5px solid green;
   background-color: #ded9d7;
 }
 #booked_services {
-  border: 5px solid orange;
   background-color: #ded9d7;
 }
 #card_container {
