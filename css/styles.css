@@ -1,4 +1,26 @@
-/* center all cards */
+#home_img {
+  height: 700px;
+  width: 98%;
+  margin: 1% 1% 1% 1%;
+  background-image: url("../images/dog_welcome.jpg");
+  background-position: 50% 50%;
+  object-fit: cover;
+  background-size: cover;
+}
+
+#home_welcome_banner {
+  text-align: center;
+}
+body {
+  background-color: #f7f5f5;
+}
+.home-text {
+  margin-top: 5%;
+  margin-left: 58%;
+  color: white;
+  text-align: right;
+}
+
 #card_container {
   display: flex;
   flex-direction: column;
@@ -47,3 +69,13 @@ body {
   text-align: center;
   color: white;
 }
+
+body {
+  background-color: #F7F5F5;
+}
+#heading_div {
+  background-color: #59504C;
+  text-align: center;
+  color: white;
+}
+
