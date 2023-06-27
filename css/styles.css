@@ -20,3 +20,33 @@ body {
   color: white;
   text-align: right;
 }
+
+#user_img {
+  border-radius: 50%;
+}
+#user_img_container {
+  border: 5px solid red;
+  display: flex;
+  justify-content: center;
+}
+#user_container {
+  border: 5px solid blue;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+#user_account_info {
+  border: 5px solid purple;
+  margin-top: 2%;
+}
+#service_drop_down_menu {
+  border: 5px solid yellow;
+  display: flex;
+  justify-content: center;
+}
+#history_container {
+  border: 5px solid green;
+}
+#booked_services {
+  border: 5px solid orange;
+}
