@@ -92,3 +92,21 @@ body {
   text-align: center;
   color: white;
 }
+#contact_header {
+  text-align: center;
+}
+
+#contact_us {
+  width: 80%;
+  margin-left: 10%;
+  height: auto;
+  background-color: #ded9d7;
+  padding: 2%;
+}
+#message_container {
+  width: 100%;
+  height: auto;
+}
+#submit_button {
+  text-align: center;
+}
