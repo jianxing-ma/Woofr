@@ -10,7 +10,7 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="./css/styles.css" />
-    <title>Woofr</title>
+    <title>Available Services</title>
   </head>
   <body>
     <header>
@@ -75,6 +75,125 @@
         </div>
       </nav>
     </header>
+    <div id="heading_div">
+      <h1>Our Services</h1>
+      <h3>We offer a wide variety of services that we're sure you'll love!</h3>
+    </div>
+    <main id="card_container">
+      <div id="grooming_card" class="card services-card" style="width: 50rem">
+        <img
+          src="https://images.squarespace-cdn.com/content/v1/62974abb408f7d060c1f8edb/4a5dcb75-3506-41d8-bee5-22962ed1c19c/IMG_4420-2000x1500.jpg"
+          class="card-img-top"
+          alt="Wet Doodle"
+        />
+        <div class="card-body">
+          <h5 class="card-title">Grooming</h5>
+          <p class="card-text">
+            We offer several options for your best friend's spa day:
+          </p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li
+            class="list-group-item"
+            data-bs-toggle="tooltip"
+            data-bs-title="Trim, Bath, Ear Cleaning, Nail Grinding, Paw Pad Treatment, and Perfume"
+          >
+            Royal Bath: $100.00
+          </li>
+          <li
+            class="list-group-item"
+            data-bs-toggle="tooltip"
+            data-bs-title="Trim, Bath, Ear Cleaning, and Nail Grinding"
+          >
+            Delux Bath: $75.00
+          </li>
+          <li
+            class="list-group-item"
+            data-bs-toggle="tooltip"
+            data-bs-title="Bath and Ear Cleaning"
+          >
+            Standard Bath: $50.00
+          </li>
+        </ul>
+        <div class="card-body button-container">
+          <button
+            type="button"
+            class="btn btn-secondary btn-lg btn-services"
+            onclick="window.location.href='./bookServices.html'"
+          >
+            Book a Bath!
+          </button>
+        </div>
+      </div>
+
+      <div id="walking_card" class="card services-card" style="width: 50rem">
+        <img
+          src="https://otservices.wustl.edu/wp-content/uploads/2020/05/Walking-Dog.jpg"
+          class="card-img-top"
+          alt="Walking Dog"
+        />
+        <div class="card-body">
+          <h5 class="card-title">Walking</h5>
+          <p class="card-text">
+            We have dedicated walkers to take your pup on adventures!
+          </p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">30 minutes: $30.00</li>
+          <li class="list-group-item">60 minutes: $50.00</li>
+          <li class="list-group-item">90 minutes: $70.00</li>
+        </ul>
+        <div class="card-body button-container">
+          <button
+            type="button"
+            class="btn btn-secondary btn-lg btn-services"
+            onclick="window.location.href='./bookServices.html'"
+          >
+            Book a Walk!
+          </button>
+        </div>
+      </div>
+
+      <div id="boarding_card" class="card services-card" style="width: 50rem">
+        <img
+          src="https://images.squarespace-cdn.com/content/v1/5bd6d4d0d74562c103552f24/1546004051130-IU3OY90QYGE0F73T695V/Deluxe+Dog+Boarding+Accommodation"
+          class="card-img-top"
+          alt="Dog Suite"
+        />
+        <div class="card-body">
+          <h5 class="card-title">Boarding</h5>
+          <p class="card-text">
+            Whether it's in group or individual boarding, we make your best
+            friend comfortable!
+          </p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li
+            class="list-group-item"
+            data-bs-toggle="tooltip"
+            data-bs-title="The Sleepover Room has ample space for everyone!  If your dog is a social butterfly, they will love a night in with all of their friends!"
+          >
+            Group Boarding: $45 per night
+          </li>
+          <li
+            class="list-group-item"
+            data-bs-toggle="tooltip"
+            data-bs-title="If your pup needs privacy to rest, we offer 5X10m rooms with all of the creature comforts while you"
+          >
+            Boarding Suite: $70 per night
+          </li>
+        </ul>
+        <div class="card-body button-container">
+          <button
+            type="button"
+            class="btn btn-secondary btn-lg btn-services"
+            onclick="window.location.href='./bookServices.html'"
+          >
+            Book a Stay!
+          </button>
+        </div>
+      </div>
+    </main>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
