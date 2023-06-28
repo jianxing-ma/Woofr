@@ -110,3 +110,19 @@ body {
 #submit_button {
   text-align: center;
 }
+#pill_container {
+  background-color: #ded9d7;
+}
+#contact_us,
+#pill_container {
+  border-radius: 20px;
+}
+a {
+  color: black;
+}
+.btn,
+.btn-primary,
+#tab_login {
+  background-color: #59504c;
+  color: white;
+}
