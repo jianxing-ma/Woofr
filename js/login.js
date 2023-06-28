@@ -15,7 +15,7 @@ export function validateLogin(){
             data-bs-toggle="dropdown"
             aria-expanded="false"
             >
-                Username
+                ${JSON.parse(localStorage.getItem("userInfo")).name}
             </button>
             <ul class="dropdown-menu dropdown-menu-dark">
                 <li><a class="dropdown-item active" href="my-account.html">My Account</a></li>
@@ -43,6 +43,9 @@ export function validateLogin(){
     }
 }
 
+//___________________________________________________________________________
+//____________________________ Registration__________________________________
+//___________________________________________________________________________
 export function handleAccountRegistrationFormSubmit(e) {
     e.preventDefault();
 
@@ -55,7 +58,7 @@ export function handleAccountRegistrationFormSubmit(e) {
 
     if (registerPassword === registerRepeatPassword) {
 
-        const userInfo = {"name": registerName, "username": registerUsername, "email": registerEmail, "password": registerPassword, "logged-in": true};
+        const userInfo = {"name": registerName, "username": registerUsername, "email": registerEmail, "password": registerPassword};
 
         localStorage.setItem("userInfo", JSON.stringify(userInfo));
 
@@ -84,6 +87,13 @@ function alertRegistrationSuccess() {
     pill_container.append(alertMessage);
 }
 
+//__________________________________________________________________________________
+//____________________________________Login_________________________________________
+//__________________________________________________________________________________
+
+
+
+// helper function to get user input
 function getInputValue(id) {
     return document.getElementById(id).value;
 }
