@@ -57,14 +57,32 @@ export function handleAccountRegistrationFormSubmit(e) {
     const registerRepeatPassword = getInputValue("register_repeat_password");
 
     if (registerPassword === registerRepeatPassword) {
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+    
+        let requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
 
-        const userInfo = {"name": registerName, "username": registerUsername, "email": registerEmail, "password": registerPassword};
-
-        localStorage.setItem("userInfo", JSON.stringify(userInfo));
-
-        alertRegistrationSuccess();
+        fetch("https://getpantry.cloud/apiv1/pantry/0306b1cf-df37-49c7-bdbe-eb369a019f17/basket/USER_ACCOUNT_DATABASE", requestOptions)
+        .then(response => response.json())
+        .then(data => {
+            if (registerUsername in data) {
+                alert("Username is already taken!");
+            }else {
+                const userInfo = {"name": registerName, "username": registerUsername, "email": registerEmail, "password": registerPassword};
+        
+                localStorage.setItem("userInfo", JSON.stringify(userInfo));
+                updateUserInfoToDatabase(userInfo);
+        
+                alertRegistrationSuccess();
+            }
+        })
+        .catch(error => console.log('error', error));
     }else {
-        alert("Passwords do not match!")
+        alert("Passwords do not match!");
     }
 }
 
@@ -91,7 +109,42 @@ function alertRegistrationSuccess() {
 //____________________________________Login_________________________________________
 //__________________________________________________________________________________
 
+//__________________________________Database Process________________________________
 
+function updateUserInfoToDatabase(userInfo) {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const object = {};
+    object[userInfo.username] = userInfo;
+    const raw = JSON.stringify(object);
+
+    let requestOptions = {
+        method: 'PUT',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+
+    fetch("https://getpantry.cloud/apiv1/pantry/0306b1cf-df37-49c7-bdbe-eb369a019f17/basket/USER_ACCOUNT_DATABASE", requestOptions)
+    .catch(error => console.log('error', error));
+}
+
+function getUserInfoFromDatabase(result) {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    let requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
+    };
+
+    fetch("https://getpantry.cloud/apiv1/pantry/0306b1cf-df37-49c7-bdbe-eb369a019f17/basket/USER_ACCOUNT_DATABASE", requestOptions)
+    .then(response => response.json())
+    .then(data => {result = data;})
+    .catch(error => console.log('error', error));
+}
 
 // helper function to get user input
 function getInputValue(id) {
