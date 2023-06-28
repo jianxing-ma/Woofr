@@ -95,6 +95,7 @@ export function handleAccountRegister(e) {
 // Toast message to redirect user to account page following login
 function alertRegistrationSuccess() {
     const alertMessage = document.createElement("div");
+    alertMessage.classList.add("d-flex");
     alertMessage.classList.add("justify-content-center");
 
     alertMessage.innerHTML = `
