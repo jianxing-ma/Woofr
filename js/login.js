@@ -1,4 +1,4 @@
-const pantryAPIBasketUrl = "https://getpantry.cloud/apiv1/pantry/0306b1cf-df37-49c7-bdbe-eb369a019f17/basket/USER_ACCOUNT_DATABASE";
+const pantryAPIBasketUserUrl = "https://getpantry.cloud/apiv1/pantry/0306b1cf-df37-49c7-bdbe-eb369a019f17/basket/USER_ACCOUNT_DATABASE";
 
 // check user login status, and update login related elements accordingly
 export function validateLogin(){
@@ -72,7 +72,7 @@ export function handleAccountRegister(e) {
             redirect: 'follow'
         };
 
-        fetch(pantryAPIBasketUrl, requestOptions)
+        fetch(pantryAPIBasketUserUrl, requestOptions)
         .then(response => response.json())
         .then(data => {
             if (registerUsername in data) {
@@ -134,7 +134,7 @@ function handleAccountLogin(e) {
             redirect: 'follow'
         };
 
-    fetch(pantryAPIBasketUrl, requestOptions)
+    fetch(pantryAPIBasketUserUrl, requestOptions)
         .then(response => response.json())
         .then(data => {
             if (inputUsername in data) {
@@ -171,7 +171,7 @@ function updateUserInfoToDatabase(userInfo) {
         redirect: 'follow'
     };
 
-    fetch(pantryAPIBasketUrl, requestOptions)
+    fetch(pantryAPIBasketUserUrl, requestOptions)
     .catch(error => console.log('error', error));
 }
 
@@ -185,7 +185,7 @@ function getUserInfoFromDatabase(result) {
         redirect: 'follow'
     };
 
-    fetch(pantryAPIBasketUrl, requestOptions)
+    fetch(pantryAPIBasketUserUrl, requestOptions)
     .then(response => response.json())
     .then(data => {result = data;})
     .catch(error => console.log('error', error));
