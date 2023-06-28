@@ -1,8 +1,14 @@
+const pantryAPIBasketUrl = "https://getpantry.cloud/apiv1/pantry/0306b1cf-df37-49c7-bdbe-eb369a019f17/basket/USER_ACCOUNT_DATABASE";
+
 // check user login status, and update login related elements accordingly
 export function validateLogin(){
 
     if (typeof pills_register_form != "undefined") {
-        pills_register_form.addEventListener("submit", (e) => handleAccountRegistrationFormSubmit(e));
+        pills_register_form.addEventListener("submit", (e) => handleAccountRegister(e));
+    }
+
+    if (typeof pills_login_form != "undefined") {
+        pills_login_form.addEventListener("submit", (e) => handleAccountLogin(e));
     }
 
     if(JSON.parse(localStorage.getItem("userInfo"))) {
@@ -26,13 +32,13 @@ export function validateLogin(){
         </div>
         `
 
-    login_btn_container.innerHTML = "";
-    login_btn_container.append(profileButton);
-    
-    document.getElementById("btn_sign_out").addEventListener("click", () => {
-        localStorage.clear();
-    document.location.reload();
-    })
+        login_btn_container.innerHTML = "";
+        login_btn_container.append(profileButton);
+        
+        document.getElementById("btn_sign_out").addEventListener("click", () => {
+            localStorage.clear();
+        document.location.reload();
+        });
     }else {
         const loginButton = document.createElement("div");
         loginButton.innerHTML = `
@@ -46,7 +52,7 @@ export function validateLogin(){
 //___________________________________________________________________________
 //____________________________ Registration__________________________________
 //___________________________________________________________________________
-export function handleAccountRegistrationFormSubmit(e) {
+export function handleAccountRegister(e) {
     e.preventDefault();
 
     // get data from user
@@ -66,7 +72,7 @@ export function handleAccountRegistrationFormSubmit(e) {
             redirect: 'follow'
         };
 
-        fetch("https://getpantry.cloud/apiv1/pantry/0306b1cf-df37-49c7-bdbe-eb369a019f17/basket/USER_ACCOUNT_DATABASE", requestOptions)
+        fetch(pantryAPIBasketUrl, requestOptions)
         .then(response => response.json())
         .then(data => {
             if (registerUsername in data) {
@@ -86,6 +92,7 @@ export function handleAccountRegistrationFormSubmit(e) {
     }
 }
 
+// Toast message to redirect user to account page following login
 function alertRegistrationSuccess() {
     const alertMessage = document.createElement("div");
     alertMessage.classList.add("justify-content-center");
@@ -109,6 +116,43 @@ function alertRegistrationSuccess() {
 //____________________________________Login_________________________________________
 //__________________________________________________________________________________
 
+function handleAccountLogin(e) {
+    e.preventDefault();
+
+    // get data from user
+    const inputUsername = getInputValue("login_username");
+    const inputPassword = getInputValue("login-password");
+
+    // retrieve user database
+    const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+    
+        let requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
+
+    fetch(pantryAPIBasketUrl, requestOptions)
+        .then(response => response.json())
+        .then(data => {
+            if (inputUsername in data) {
+                if (data[inputUsername].password === inputPassword) {
+                    const userInfo = {"name": data[inputUsername].name, "username": inputUsername, "email": data[inputUsername].email};
+        
+                    localStorage.setItem("userInfo", JSON.stringify(userInfo));
+        
+                    alertRegistrationSuccess();
+                }else {
+                    alert("Invalid password!");
+                }
+            }else {
+                alert("Invalid username!");
+            }
+        })
+        .catch(error => console.log('error', error));
+}
+
 //__________________________________Database Process________________________________
 
 function updateUserInfoToDatabase(userInfo) {
@@ -126,7 +170,7 @@ function updateUserInfoToDatabase(userInfo) {
         redirect: 'follow'
     };
 
-    fetch("https://getpantry.cloud/apiv1/pantry/0306b1cf-df37-49c7-bdbe-eb369a019f17/basket/USER_ACCOUNT_DATABASE", requestOptions)
+    fetch(pantryAPIBasketUrl, requestOptions)
     .catch(error => console.log('error', error));
 }
 
@@ -140,7 +184,7 @@ function getUserInfoFromDatabase(result) {
         redirect: 'follow'
     };
 
-    fetch("https://getpantry.cloud/apiv1/pantry/0306b1cf-df37-49c7-bdbe-eb369a019f17/basket/USER_ACCOUNT_DATABASE", requestOptions)
+    fetch(pantryAPIBasketUrl, requestOptions)
     .then(response => response.json())
     .then(data => {result = data;})
     .catch(error => console.log('error', error));

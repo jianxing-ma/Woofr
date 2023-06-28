@@ -130,7 +130,7 @@
               role="tabpanel"
               aria-labelledby="tab-login"
             >
-              <form>
+              <form id="pills_login_form">
                 <div class="text-center mb-3">
                   <p>Sign in with:</p>
                   <button type="button" class="btn btn-link btn-floating mx-1">
@@ -150,20 +150,22 @@
 
                 <!-- Email input -->
                 <div class="form-outline mb-4">
-                  <input type="email" id="loginName" class="form-control" />
-                  <label class="form-label" for="loginName"
-                    >Email or username</label
+                  <label class="form-label" for="login_username"
+                    >Username</label
                   >
+                  <input type="text" id="login_username" class="form-control" />
                 </div>
 
                 <!-- Password input -->
                 <div class="form-outline mb-4">
+                  <label class="form-label" for="login-password"
+                    >Password</label
+                  >
                   <input
                     type="password"
-                    id="loginPassword"
+                    id="login-password"
                     class="form-control"
                   />
-                  <label class="form-label" for="loginPassword">Password</label>
                 </div>
 
                 <!-- 2 column grid layout -->
