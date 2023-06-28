@@ -75,7 +75,7 @@
         </div>
       </nav>
     </header>
-
+    <h1 id="appointment_heading">Book Our Services</h1>
     <main id="services_container">
       <form action="" id="appointment_form">
         <select
@@ -89,11 +89,11 @@
           <option value="3">Three</option>
         </select>
         <div class="mb-3">
-          <label for="date_selector" class="form-label">Select Date</label>
+          <label for="date_calendar" class="form-label">Select Date</label>
           <input
             type="date"
-            id="date_selector"
-            name="date-selector"
+            id="date_calendar"
+            name="date-calendar"
             value="2023-06-01"
             min="2023-06-01"
             max="2050-01-01"
@@ -143,6 +143,9 @@
         <option value="2">Walking</option>
         <option value="3">Boarding</option>
       </select>
+      <div id="generated_form">
+      </div>
+      <span id="dynamic_submit"></span>
         </div>
       </form>
     </main>
@@ -152,7 +155,7 @@
       integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
       crossorigin="anonymous"
     ></script>
-    <script src="./js/script.js"></script>
+    <!-- <script src="./js/script.js"></script> -->
     <script src="./js/book.js"></script>
   </body>
 </html>

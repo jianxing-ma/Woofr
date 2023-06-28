@@ -126,3 +126,16 @@ a {
   background-color: #59504c;
   color: white;
 }
+
+#services_container {
+  justify-content: center;
+  text-align: center;
+  display:flex;
+}
+#appointment_form {
+  width: 50%;
+}
+#appointment_heading {
+  text-align: center;
+  width: 100%;
+}
