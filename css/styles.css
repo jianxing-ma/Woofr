@@ -92,6 +92,7 @@ body {
   text-align: center;
   color: white;
 }
+
 #contact_header {
   text-align: center;
 }
@@ -103,23 +104,31 @@ body {
   background-color: #ded9d7;
   padding: 2%;
 }
+
 #message_container {
   width: 100%;
   height: auto;
 }
+
 #submit_button {
   text-align: center;
 }
+
 #pill_container {
   background-color: #ded9d7;
 }
+
 #contact_us,
 #pill_container {
+  border: 1px solid gray;
   border-radius: 20px;
+  padding: 10px;
 }
+
 a {
   color: black;
 }
+
 .btn,
 .btn-primary,
 #tab_login {
@@ -138,4 +147,7 @@ a {
 #appointment_heading {
   text-align: center;
   width: 100%;
+}
+#tab_register {
+  color: black;
 }

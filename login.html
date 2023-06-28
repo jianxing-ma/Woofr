@@ -78,9 +78,7 @@
                 </ul>
               </li>
             </ul>
-            <li class="d-flex">
-              <a class="btn btn-primary" href="./login.html">Login</a>
-            </li>
+            <li id="login_btn_container" class="d-flex"></li>
           </div>
         </div>
       </nav>
@@ -89,11 +87,7 @@
     <main>
       <!-- Login Container -->
       <div class="row" style="padding: 20px">
-        <section
-          class="w-50 mx-auto"
-          id="pill_container"
-          style="border: 1px solid gray; padding: 10px"
-        >
+        <section class="w-50 mx-auto" id="pill_container">
           <!-- Pills navs -->
           <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
             <li class="nav-item" role="presentation">
@@ -111,9 +105,9 @@
             <li class="nav-item" role="presentation">
               <a
                 class="nav-link"
-                id="tab-register"
+                id="tab_register"
                 data-bs-toggle="pill"
-                href="#pills-register"
+                href="#pills_register"
                 role="tab"
                 aria-controls="pills-register"
                 aria-selected="false"
@@ -132,7 +126,7 @@
               role="tabpanel"
               aria-labelledby="tab-login"
             >
-              <form>
+              <form id="pills_login_form">
                 <div class="text-center mb-3">
                   <p>Sign in with:</p>
                   <button type="button" class="btn btn-link btn-floating mx-1">
@@ -152,20 +146,22 @@
 
                 <!-- Email input -->
                 <div class="form-outline mb-4">
-                  <input type="email" id="loginName" class="form-control" />
-                  <label class="form-label" for="loginName"
-                    >Email or username</label
+                  <label class="form-label" for="login_username"
+                    >Username</label
                   >
+                  <input type="text" id="login_username" class="form-control" />
                 </div>
 
                 <!-- Password input -->
                 <div class="form-outline mb-4">
+                  <label class="form-label" for="login-password"
+                    >Password</label
+                  >
                   <input
                     type="password"
-                    id="loginPassword"
+                    id="login-password"
                     class="form-control"
                   />
-                  <label class="form-label" for="loginPassword">Password</label>
                 </div>
 
                 <!-- 2 column grid layout -->
@@ -201,11 +197,12 @@
             <!-- Registration content -->
             <div
               class="tab-pane fade"
-              id="pills-register"
+              id="pills_register"
               role="tabpanel"
               aria-labelledby="tab-register"
             >
-              <form>
+              <form id="pills_register_form">
+                <!-- outside e-mail account sign up -->
                 <div class="text-center mb-3">
                   <p>Sign up with:</p>
                   <button type="button" class="btn btn-link btn-floating mx-1">
@@ -225,50 +222,54 @@
 
                 <!-- Name input -->
                 <div class="form-outline mb-4">
-                  <input type="text" id="registerName" class="form-control" />
-                  <label class="form-label" for="registerName">Name</label>
+                  <label class="form-label" for="register_name">Name</label>
+                  <input type="text" id="register_mame" class="form-control" />
                 </div>
 
                 <!-- Username input -->
                 <div class="form-outline mb-4">
-                  <input
-                    type="text"
-                    id="registerUsername"
-                    class="form-control"
-                  />
-                  <label class="form-label" for="registerUsername"
+                  <label class="form-label" for="register_username"
                     >Username</label
                   >
+                  <input
+                    type="text"
+                    id="register_username"
+                    class="form-control"
+                  />
                 </div>
 
                 <!-- Email input -->
                 <div class="form-outline mb-4">
-                  <input type="email" id="registerEmail" class="form-control" />
-                  <label class="form-label" for="registerEmail">Email</label>
+                  <label class="form-label" for="register_email">Email</label>
+                  <input
+                    type="email"
+                    id="register_email"
+                    class="form-control"
+                  />
                 </div>
 
                 <!-- Password input -->
                 <div class="form-outline mb-4">
-                  <input
-                    type="password"
-                    id="registerPassword"
-                    class="form-control"
-                  />
-                  <label class="form-label" for="registerPassword"
+                  <label class="form-label" for="register_password"
                     >Password</label
                   >
+                  <input
+                    type="password"
+                    id="register_password"
+                    class="form-control"
+                  />
                 </div>
 
                 <!-- Repeat Password input -->
                 <div class="form-outline mb-4">
-                  <input
-                    type="password"
-                    id="registerRepeatPassword"
-                    class="form-control"
-                  />
-                  <label class="form-label" for="registerRepeatPassword"
+                  <label class="form-label" for="register_repeat_password"
                     >Repeat password</label
                   >
+                  <input
+                    type="password"
+                    id="register_repeat_password"
+                    class="form-control"
+                  />
                 </div>
 
                 <!-- Checkbox -->
@@ -277,23 +278,23 @@
                     class="form-check-input me-2"
                     type="checkbox"
                     value=""
-                    id="registerCheck"
+                    id="register_check"
                     checked
                     aria-describedby="registerCheckHelpText"
                   />
-                  <label class="form-check-label" for="registerCheck">
+                  <label class="form-check-label" for="register_check">
                     I have read and agree to the terms
                   </label>
                 </div>
 
                 <!-- Submit button -->
                 <button type="submit" class="btn btn-primary btn-block mb-3">
-                  Sign in
+                  Submit
                 </button>
               </form>
             </div>
           </div>
-          <!-- Pills content -->
+          <!-- Pills content END-->
         </section>
       </div>
     </main>
@@ -302,7 +303,6 @@
       integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
       crossorigin="anonymous"
     ></script>
-    <script src="./js/script.js"></script>
-    <script src="./js/login.js"></script>
+    <script src="./js/script.js" type="module"></script>
   </body>
 </html>
