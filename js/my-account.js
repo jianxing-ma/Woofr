@@ -3,6 +3,7 @@ const pantryAPIBasketPetsUrl = "https://getpantry.cloud/apiv1/pantry/0306b1cf-df
 const username = JSON.parse(localStorage.getItem("userInfo")).username;
 
 document.getElementById("add_pet_form").addEventListener("submit", (e) => {
+    loadUserPetsData();
     handleAddPetForm(e);
 })
 
@@ -11,6 +12,21 @@ document.getElementById("add_pet_btn").addEventListener("click", (e => {
 }))
 
 let userPets = {};
+
+function getUserAndPetData() {
+
+
+
+
+
+
+    document.getElementById("user_account_info").innerHTML = `
+    
+   
+   
+    `
+
+}
 
 function loadUserPetsData() {
     const myHeaders = new Headers();

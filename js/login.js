@@ -34,7 +34,8 @@ export function validateLogin(){
 
         login_btn_container.innerHTML = "";
         login_btn_container.append(profileButton);
-        
+
+
         document.getElementById("btn_sign_out").addEventListener("click", () => {
             localStorage.clear();
         document.location.reload();
