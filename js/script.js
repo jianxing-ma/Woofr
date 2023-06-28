@@ -1,3 +1,6 @@
+import { validateLogin } from "./login.js";
+window.onload = validateLogin;
+
 // Tooltips for hover over information on the services-description.html page
 const tooltipTriggerList = document.querySelectorAll(
   '[data-bs-toggle="tooltip"]'
@@ -50,4 +53,4 @@ function sendEmail(event) {
 }
 
 // Attach the form submission event listener
-document.getElementById("contactForm").addEventListener("submit", sendEmail);
+// document.getElementById("contactForm").addEventListener("submit", sendEmail);
