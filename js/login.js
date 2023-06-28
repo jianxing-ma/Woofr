@@ -1,45 +1,49 @@
 // check user login status, and update login related elements accordingly
 export function validateLogin(){
-  if(JSON.parse(localStorage.getItem("userInfo"))) {
-    const profileButton = document.createElement("div");
-    profileButton.innerHTML = `
-    <div id="profile_btn" class="dropstart">
-        <button
-        class="btn btn-secondary dropdown-toggle"
-        type="button"
-        data-bs-toggle="dropdown"
-        aria-expanded="false"
-        >
-            Username
-        </button>
-        <ul class="dropdown-menu dropdown-menu-dark">
-            <li><a class="dropdown-item active" href="my-account.html">My Account</a></li>
-            <li><a class="dropdown-item" href=".book-services.html">Book A Service</a></li>
-            <li><hr class="dropdown-divider" /></li>
-            <li><a id="btn_sign_out" class="dropdown-item" onclick='return signOut()'>Sign Out</a></li>
-        </ul>
-    </div>
-    `
+
+    if (typeof pills_register_form != "undefined") {
+        pills_register_form.addEventListener("submit", (e) => handleAccountRegistrationFormSubmit(e));
+    }
+
+    if(JSON.parse(localStorage.getItem("userInfo"))) {
+        const profileButton = document.createElement("div");
+        profileButton.innerHTML = `
+        <div id="profile_btn" class="dropstart">
+            <button
+            class="btn btn-secondary dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            >
+                Username
+            </button>
+            <ul class="dropdown-menu dropdown-menu-dark">
+                <li><a class="dropdown-item active" href="my-account.html">My Account</a></li>
+                <li><a class="dropdown-item" href="book-services.html">Book A Service</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a id="btn_sign_out" class="dropdown-item">Sign Out</a></li>
+            </ul>
+        </div>
+        `
+
     login_btn_container.innerHTML = "";
     login_btn_container.append(profileButton);
-  }else {
-    const loginButton = document.createElement("div");
-    loginButton.innerHTML = `
-    <a id="login_btn" class="btn btn-primary" href="./login.html">Login</a>
-    `
-    login_btn_container.innerHTML = "";
-    login_btn_container.append(loginButton);
-  }
-};
-
-function signOut() {
-    localStorage.clear();
+    
+    document.getElementById("btn_sign_out").addEventListener("click", () => {
+        localStorage.clear();
     document.location.reload();
+    })
+    }else {
+        const loginButton = document.createElement("div");
+        loginButton.innerHTML = `
+        <a id="login_btn" class="btn btn-primary" href="./login.html">Login</a>
+        `
+        login_btn_container.innerHTML = "";
+        login_btn_container.append(loginButton);
+    }
 }
 
-pills_register_form.addEventListener("submit", (e) => handleAccountRegistrationFormSubmit(e));
-
-function handleAccountRegistrationFormSubmit(e) {
+export function handleAccountRegistrationFormSubmit(e) {
     e.preventDefault();
 
     // get data from user

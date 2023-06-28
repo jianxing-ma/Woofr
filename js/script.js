@@ -1,4 +1,6 @@
 import { validateLogin } from "./login.js";
+
+// check for login status and update page
 window.onload = validateLogin;
 
 // Tooltips for hover over information on the services-description.html page
