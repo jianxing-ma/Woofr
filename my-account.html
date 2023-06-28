@@ -85,47 +85,121 @@
         <div id="user_account_info" class="col-sm-8 col-md-8 col-lg-8">
           col-sm-8
         </div>
-        <div id="service_drop_down_menu" class="col-sm-8 col-md-8 col-lg-8">
-          <div class="btn-group">
-            <button class="btn btn-secondary btn-lg" type="button">
-              Book New Services
-            </button>
-            <button
-              type="button"
-              class="btn btn-lg btn-secondary dropdown-toggle dropdown-toggle-split"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <span class="visually-hidden">Toggle Dropdown</span>
-            </button>
-            <ul id="services_drop_down" class="dropdown-menu">
-              <li>
-                <a
-                  id="grooming_drop_down"
-                  class="dropdown-item"
-                  href="./bookServices.html"
-                  >Grooming</a
-                >
-              </li>
-              <li>
-                <a
-                  id="walking_drop_down"
-                  class="dropdown-item"
-                  href="./bookServices.html"
-                  >Dog Walking</a
-                >
-              </li>
-              <li>
-                <a
-                  id="boarding_drop_down"
-                  class="dropdown-item"
-                  href="./bookServicesg.html"
-                  >Boarding</a
-                >
-              </li>
-            </ul>
-          </div>
+        <div id="add_pet_form_test">
+          <form id="add_pet_form">
+            <div class="row mb-3">
+              <label for="add_pet_name" class="col-sm-2 col-form-label"
+                >Name</label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="add_pet_form_name"
+                />
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="add_pet_form_breed" class="col-sm-2 col-form-label"
+                >Breed</label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="add_pet_form_breed"
+                />
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="add_pet_form_age" class="col-sm-2 col-form-label"
+                >Age</label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="add_pet_form_age"
+                />
+              </div>
+            </div>
+            <fieldset class="row mb-3">
+              <legend class="col-form-label col-sm-2 pt-0">Intact</legend>
+              <div class="col-sm-10">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="add_pet_form_is_intact"
+                    id="add_pet_form_is_intact"
+                    value="true"
+                    checked
+                  />
+                  <label class="form-check-label" for="add_pet_form_is_intact">
+                    Yes
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="add_pet_form_is_intact"
+                    id="add_pet_form_is_not_intact"
+                    value="false"
+                  />
+                  <label
+                    class="form-check-label"
+                    for="add_pet_form_is_not_intact"
+                  >
+                    No
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset class="row mb-3">
+              <legend class="col-form-label col-sm-2 pt-1">
+                Shots Up to Date
+              </legend>
+              <div class="col-sm-10">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="add_pet_form_shots_up_to_date"
+                    id="add_pet_form_shots_up_to_date"
+                    value="true"
+                    checked
+                  />
+                  <label
+                    class="form-check-label"
+                    for="add_pet_form_shots_up_to_date"
+                  >
+                    Yes
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="add_pet_form_shots_up_to_date"
+                    id="add_pet_form_shots_not_up_to_date"
+                    value="false"
+                  />
+                  <label
+                    class="form-check-label"
+                    for="add_pet_form_shots_not_up_to_date"
+                  >
+                    No
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+            <button type="submit" class="btn btn-primary">Add</button>
+          </form>
         </div>
+        <button id="add_pet_btn" class="btn btn-secondary btn-lg" type="button">
+          Add Pet
+        </button>
       </div>
     </div>
 
@@ -140,5 +214,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="./js/script.js" type="module"></script>
+    <script src="./js/my-account.js"></script>
   </body>
 </html>
