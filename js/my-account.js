@@ -1,6 +1,8 @@
 const pantryAPIBasketPetsUrl =
   "https://getpantry.cloud/apiv1/pantry/0306b1cf-df37-49c7-bdbe-eb369a019f17/basket/PET_DATABASE";
 
+const pantryAPIBasketPetServiceUrl = "https://getpantry.cloud/apiv1/pantry/0306b1cf-df37-49c7-bdbe-eb369a019f17/basket/PET_SERVICE_DATABASE"
+
 const username = JSON.parse(localStorage.getItem("userInfo")).username;
 let userPets = {};
 let userPetServices = {};
@@ -12,9 +14,11 @@ document.addEventListener("DOMContentLoaded", () => {
     for (petId in userPets) {
       document
         .getElementById(petId)
-        .addEventListener("click", (e) => populatePetServiceData(petId));
+        .addEventListener("click", (e) => populatePetServiceData(e));
     }
   });
+  
+  loadPetServiceHistoryInAccount();
 });
 
 document.getElementById("add_pet_form").addEventListener("submit", (e) => {
@@ -86,7 +90,9 @@ function handleAddPetForm(e) {
     .catch((error) => console.log("error", error));
 }
 
-function populatePetServiceData(petId) {
+function populatePetServiceData(e) {
+  petId = e.target.getAttribute("id");
+
   document.getElementById("booked_services").innerHTML = `
   <div class="card" style="width: 18rem;">
   <h3>${petId}</h3>
@@ -94,10 +100,10 @@ function populatePetServiceData(petId) {
   </ul>
 </div>
   `;
-  var serviceData = JSON.parse(localStorage.getItem("serviceData")).petId;
+  var serviceData = JSON.parse(localStorage.getItem("serviceData"))[petId];
   for (serviceId in serviceData) {
     let serviceItem = document.createElement("li");
-    serviceItem.textContent = `${serviceData.serviceId["date"]}, ${serviceData.serviceId["time"]}, ${serviceData.serviceId["service"]}, ${serviceData.serviceId["service-type"]}`;
+    serviceItem.textContent = `${serviceData[serviceId]["date"]}, ${serviceData[serviceId]["time"]}, ${serviceData[serviceId]["service"]}, ${serviceData[serviceId]["service-type"]}`;
     document.getElementById("booked_service_list").appendChild(serviceItem);
   }
 }
@@ -130,4 +136,24 @@ function getUserAndPetData() {
 // helper function to get user input
 function getInputValue(id) {
   return document.getElementById(id).value;
+}
+
+//_________________________TEMPARARY___________________________
+function loadPetServiceHistoryInAccount() {
+  // Load pet service history
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  var requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow",
+  };
+
+  fetch(pantryAPIBasketPetServiceUrl, requestOptions)
+    .then((response) => response.json())
+    .then((data) => {
+      localStorage.setItem("serviceData", JSON.stringify(data))
+    })
+    .catch((error) => console.log("error", error));
 }
