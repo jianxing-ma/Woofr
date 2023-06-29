@@ -99,6 +99,8 @@ function handleFormSubmission(e) {
 
   const obj = {};
   obj[selectedPet] = selectedPetServiceData;
+  serviceData[petId];
+  localStorage.setItem("serviceData", JSON.stringify(obj));
 
   // push updated pet service history to pantry
   var myHeaders = new Headers();
