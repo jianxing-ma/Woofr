@@ -55,4 +55,10 @@ function sendEmail(event) {
 }
 
 // Attach the form submission event listener
-document.getElementById("contactForm").addEventListener("submit", sendEmail);
+// document.getElementById("contactForm").addEventListener("submit", sendEmail);
+document.addEventListener("DOMContentLoaded", function () {
+  var contactForm = document.getElementById("contactForm");
+  if (contactForm) {
+    contactForm.addEventListener("submit", sendEmail);
+  }
+});
