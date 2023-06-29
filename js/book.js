@@ -90,7 +90,7 @@ function handleFormSubmission(e) {
   // console.log(pet_selector.textContent);
 
   selectedPetServiceData[serviceKey] = {
-    pet: pet_selector.textContent,
+    pet: pet_selector.options[pet_selector.selectedIndex].textContent,
     date: selectedDate,
     time: selectedtime,
     service: selectedService,

@@ -8,8 +8,7 @@ let userPets = {};
 let userPetServices = {};
 
 document.addEventListener("DOMContentLoaded", () => {
-  var loadUserPetsDataReturnType = loadUserPetsData();
-  loadUserPetsDataReturnType.then(() => {
+  loadUserPetsData().then(() => {
     populateUserAndPetData(username);
     for (petId in userPets) {
       document
