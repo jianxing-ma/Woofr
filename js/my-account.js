@@ -3,16 +3,24 @@ const pantryAPIBasketPetsUrl =
 
 const username = JSON.parse(localStorage.getItem("userInfo")).username;
 let userPets = {};
+let userPetServices = {};
 
 document.addEventListener("DOMContentLoaded", () => {
-  loadUserPetsData()
-  .then(() => populateUserAndPetData(username));
-})
+  var loadUserPetsDataReturnType = loadUserPetsData();
+  loadUserPetsDataReturnType.then(() => {
+    populateUserAndPetData(username);
+    for (petId in userPets) {
+      document
+        .getElementById(petId)
+        .addEventListener("click", (e) => populatePetServiceData(petId));
+    }
+  });
+});
 
-document.getElementById("add_pet_form").addEventListener("submit", (e) => { 
-  e.preventDefault(); 
-  loadUserPetsData().then(() => handleAddPetForm(e)); 
-}); 
+document.getElementById("add_pet_form").addEventListener("submit", (e) => {
+  e.preventDefault();
+  handleAddPetForm(e);
+});
 
 function loadUserPetsData() {
   const myHeaders = new Headers();
@@ -27,8 +35,10 @@ function loadUserPetsData() {
   return fetch(pantryAPIBasketPetsUrl, requestOptions)
     .then((response) => response.json())
     .then((data) => {
-      userPets = data[username];
-      localStorage.setItem("userPets", JSON.stringify(userPets));
+      if (data[username] !== undefined) {
+        userPets = data[username];
+        localStorage.setItem("userPets", JSON.stringify(userPets));
+      }
     })
     .catch((error) => console.log("error", error));
 }
@@ -72,17 +82,31 @@ function handleAddPetForm(e) {
   };
 
   fetch(pantryAPIBasketPetsUrl, requestOptions)
-  .then(localStorage.setItem("userPets", JSON.stringify(object)))
-  .catch((error) =>
-    console.log("error", error)
-  );
+    .then(localStorage.setItem("userPets", JSON.stringify(object)))
+    .catch((error) => console.log("error", error));
+}
+
+function populatePetServiceData(petId) {
+  document.getElementById("booked_services").innerHTML = `
+  <div class="card" style="width: 18rem;">
+  <h3>${petId}</h3>
+  <ul id="booked_service_list" class="list-group list-group-flush"> 
+  </ul>
+</div>
+  `;
+  var serviceData = JSON.parse(localStorage.getItem("serviceData")).petId;
+  for (serviceId in serviceData) {
+    let serviceItem = document.createElement("li");
+    serviceItem.textContent = `${serviceData.serviceId["date"]}, ${serviceData.serviceId["time"]}, ${serviceData.serviceId["service"]}, ${serviceData.serviceId["service-type"]}`;
+    document.getElementById("booked_service_list").appendChild(serviceItem);
+  }
 }
 
 function populateUserAndPetData(username) {
   document.getElementById("user_account_info").innerHTML = `
     <div class="card" style="width: 18rem;">
     <h5> ${username} </h5>
-    <ul id= "updated_pet_list" class="list-group list-group-flush">
+    <ul id="updated_pet_list" class="list-group list-group-flush">
     </ul>
   </div>
   `;
@@ -91,15 +115,16 @@ function populateUserAndPetData(username) {
     const petName = userPets[petId]["pet-name"];
     const petlist = document.createElement("li");
     petlist.classList.add("list-group-item");
+    petlist.classList.add("btn", "btn-primary");
+    petlist.setAttribute("id", petId);
     petlist.textContent = petName;
     document.getElementById("updated_pet_list").appendChild(petlist);
   }
 }
 
-function getUserAndPetData() { 
-
+function getUserAndPetData() {
   document.getElementById("user_account_info").innerHTML = ` 
-  `; 
+  `;
 }
 
 // helper function to get user input
