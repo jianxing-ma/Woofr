@@ -8,8 +8,8 @@ const pantryAPIBasketPetServiceUrl =
 
 let username = JSON.parse(localStorage.getItem("userInfo")).username;
 // potential modification:
-// let userPets = JSON.parse(localStorage.getItem("userPets"));
 let userPets = {};
+let userPetPhoto;
 
 //__________________________________Add EventListeners_______________________________________
 //___________________________________________________________________________________________
@@ -17,9 +17,9 @@ document.addEventListener("DOMContentLoaded", () => {
   loadUserPetsData().then(() => {
     populateUserAndPetData(username);
     for (petId in userPets) {
-      document
-        .getElementById(petId)
-        .addEventListener("click", (e) => populatePetServiceData(e));
+      document.getElementById(petId).addEventListener("click", (e) => {
+        populatePetServiceData(e);
+      });
     }
   });
 
@@ -84,7 +84,6 @@ function populatePetServiceData(e) {
     let serviceItem = document.createElement("li");
 
     serviceItem.textContent = `${petServiceData[serviceId]["date"]}, ${petServiceData[serviceId]["time"]}, ${petServiceData[serviceId]["service"]}, ${petServiceData[serviceId]["service-type"]}`;
-
     document.getElementById("booked_service_list").appendChild(serviceItem);
   }
 }

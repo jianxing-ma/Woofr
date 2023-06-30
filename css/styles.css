@@ -71,6 +71,7 @@ body {
 #boarding_card {
   position: relative;
   margin-top: 30px;
+  margin-bottom: 2%;
 }
 /* create a card class for the three cards to edit it all at once */
 .services-card {
@@ -105,6 +106,7 @@ body {
   height: auto;
   background-color: #ded9d7;
   padding: 2%;
+  margin-bottom: 2%;
 }
 
 #message_container {
@@ -177,4 +179,15 @@ a {
 
 .services-history {
   text-align: center;
+}
+#logo {
+  font-family: "Dancing Script", cursive;
+  font-size: 40px;
+}
+#appointment_form {
+  margin-top: 2%;
+  border: 3px solid #59504c;
+  width: 800px;
+  height: 200px;
+  margin-bottom: 2%;
 }
