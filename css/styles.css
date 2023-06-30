@@ -191,3 +191,46 @@ a {
   height: 200px;
   margin-bottom: 2%;
 }
+
+#booked_service_list {
+  list-style-type: none;
+}
+#services_card {
+  padding: 5px;
+}
+#services_card_title {
+  text-align: center;
+}
+#working_dog {
+  /* display:block;
+  width:50rem;
+  margin-left: auto;
+  margin-right: auto; */
+  display: flex;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("../images/work-lessons-from-your-dog.jpeg");
+
+  /* Set a specific height */
+  height: 30rem;
+
+  /* Position and center the image to scale nicely on all screens */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  font-size: 70px;
+}
+#services-title {
+  position: absolute;
+  bottom: 5rem;
+  text-align: center;
+  width: 100%;
+  color: white;
+}
+/* #appointment_form {
+  margin-bottom: 20px;
+} */
+#user_img {
+  max-width: 75%;
+  max-height: 75%;
+}
