@@ -1,17 +1,98 @@
+//___________________________________Page Gloabal Variables_____________________________________
+//______________________________________________________________________________________________
 const pantryAPIBasketPetServiceUrl =
   "https://getpantry.cloud/apiv1/pantry/0306b1cf-df37-49c7-bdbe-eb369a019f17/basket/PET_SERVICE_DATABASE";
+// extract username and petData from localStorage data
+const userName = JSON.parse(localStorage.getItem("userInfo"))["username"];
+const petData = JSON.parse(localStorage.getItem("userPets"));
+let serviceData = {};
 
+//__________________________________Add EventListeners_______________________________________
+//___________________________________________________________________________________________
 document
   .querySelector("#service_selector")
   .addEventListener("change", handleServiceSelection);
-document
-  .getElementById("dynamic_submit")
-  .addEventListener("submit", handleFormSubmission);
 
-// extract username and petData from localStorage data
-const userName = JSON.parse(localStorage.getItem("userInfo")).username;
-const petData = JSON.parse(localStorage.getItem("userPets"));
-let serviceData = {};
+document.getElementById("appointment_form")
+  .addEventListener("submit", (e) => handleFormSubmission(e));
+
+//__________________________Functions for Handling EventListeners______________________
+//_____________________________________________________________________________________
+
+function handleFormSubmission(e) {
+  e.preventDefault(e);
+
+  var timeSelector = document.getElementById("time_selector");
+  var serviceSelector = document.getElementById("service_selector");
+
+  // define the user's selected values so that they can be packaged and generated into something on my-account.html
+  var selectedPet = pet_selector.value;
+  var selectedDate = date_calendar.value;
+  // var selectedtime = time_selector.value;
+  var timeValue = time_selector.value;
+  var selectedtime = timeSelector.options[timeValue].text;
+  // var selectedService = service_selector.value;
+  var selectedService =
+    serviceSelector.options[serviceSelector.selectedIndex].text;
+  var selectedServiceOption = service_generated_options.value;
+
+  // get selected pet's service data
+  let selectedPetServiceData = {};
+
+  if (selectedPet in serviceData) {
+    selectedPetServiceData = serviceData[selectedPet];
+  }
+
+  const serviceKey = selectedPet + "-" + selectedDate + "-" + selectedtime;
+
+  selectedPetServiceData[serviceKey] = {
+    pet: pet_selector.options[pet_selector.selectedIndex].textContent,
+    date: selectedDate,
+    time: selectedtime,
+    service: selectedService,
+    "service-type": selectedServiceOption,
+  };
+
+  const obj = {};
+  obj[selectedPet] = selectedPetServiceData;
+  serviceData[selectedPet] = obj[selectedPet];
+  localStorage.setItem("serviceData", JSON.stringify(serviceData));
+
+  // push updated pet service history to pantry
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  const raw = JSON.stringify(obj);
+
+  var requestOptions = {
+    method: "PUT",
+    headers: myHeaders,
+    body: raw,
+    redirect: "follow",
+  };
+
+  fetch(pantryAPIBasketPetServiceUrl, requestOptions).catch((error) =>
+    console.log("error", error)
+  );
+}
+
+
+//_______________________Functions for DOM Page Content Generation__________________________
+//__________________________________________________________________________________________
+
+function loadPetSelector() {
+  document.querySelector("#pet_selector").innerHTML =
+    "<option selected>Select Pet</option>";
+
+  for (petId in petData) {
+    const petName = petData[petId]["pet-name"];
+    const petOption = document.createElement("option");
+    petOption.value = petId;
+    petOption.textContent = petName;
+
+    document.getElementById("pet_selector").appendChild(petOption);
+  }
+}
 
 function handleServiceSelection() {
   var select = document.getElementById("service_selector");
@@ -57,82 +138,9 @@ function handleServiceSelection() {
   }
 }
 
-document
-  .getElementById("appointment_form")
-  .addEventListener("submit", (e) => handleFormSubmission(e));
 
-function handleFormSubmission(e) {
-  e.preventDefault(e);
-
-  var timeSelector = document.getElementById("time_selector");
-  var serviceSelector = document.getElementById("service_selector");
-
-  // define the user's selected values so that they can be packaged and generated into something on my-account.html
-  var selectedPet = pet_selector.value;
-  var selectedDate = date_calendar.value;
-  // var selectedtime = time_selector.value;
-  var timeValue = time_selector.value;
-  var selectedtime = timeSelector.options[timeValue].text;
-  // var selectedService = service_selector.value;
-  var selectedService =
-    serviceSelector.options[serviceSelector.selectedIndex].text;
-  var selectedServiceOption = service_generated_options.value;
-
-  // get selected pet's service data
-  let selectedPetServiceData = {};
-
-  if (selectedPet in serviceData) {
-    selectedPetServiceData = serviceData[selectedPet];
-  }
-
-  const serviceKey = selectedPet + "-" + selectedDate + "-" + selectedtime;
-
-  // console.log(pet_selector.textContent);
-
-  selectedPetServiceData[serviceKey] = {
-    pet: pet_selector.options[pet_selector.selectedIndex].textContent,
-    date: selectedDate,
-    time: selectedtime,
-    service: selectedService,
-    "service-type": selectedServiceOption,
-  };
-
-  const obj = {};
-  obj[selectedPet] = selectedPetServiceData;
-  serviceData[selectedPet] = obj[selectedPet];
-  localStorage.setItem("serviceData", JSON.stringify(serviceData));
-
-  // push updated pet service history to pantry
-  var myHeaders = new Headers();
-  myHeaders.append("Content-Type", "application/json");
-
-  const raw = JSON.stringify(obj);
-
-  var requestOptions = {
-    method: "PUT",
-    headers: myHeaders,
-    body: raw,
-    redirect: "follow",
-  };
-
-  fetch(pantryAPIBasketPetServiceUrl, requestOptions).catch((error) =>
-    console.log("error", error)
-  );
-}
-
-function loadPetSelector() {
-  document.querySelector("#pet_selector").innerHTML =
-    "<option selected>Select Pet</option>";
-
-  for (petId in petData) {
-    const petName = petData[petId]["pet-name"];
-    const petOption = document.createElement("option");
-    petOption.value = petId;
-    petOption.textContent = petName;
-
-    document.getElementById("pet_selector").appendChild(petOption);
-  }
-}
+//_________________________Functions for Loading User Data___________________________
+//___________________________________________________________________________________
 
 function loadPetServiceHistory() {
   // Load pet service history
@@ -157,7 +165,3 @@ document.addEventListener("DOMContentLoaded", () => {
   loadPetSelector();
   loadPetServiceHistory();
 });
-
-// DELETE after problem resolved
-// book_services_page_load_btn.addEventListener("click", loadPetSelector);
-// book_services_page_load_service_btn.addEventListener("click", loadPetServiceHistory);
