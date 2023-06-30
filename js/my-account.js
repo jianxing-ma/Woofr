@@ -203,31 +203,3 @@ function generateGetRequestOptions(action) {
 function getInputValue(id) {
   return document.getElementById(id).value;
 }
-
-// user generated image code
-
-// var imageInput = document.getElementById("pet_img_input");
-
-// imageInput.addEventListener("change", function () {
-//   changeImage(this);
-// });
-
-// function changeImage(input) {
-//   var reader;
-
-//   if (input.files && input.files[0]) {
-//     reader = new FileReader();
-
-//     reader.onload = function (e) {
-//       document.getElementById("user_img_container").innerHTML = `
-//         <img
-//         id="user_img"
-//         src="${e.target.result}"
-//         alt="User Profile Image"
-//       />
-//       `;
-//       localStorage.setItem("user_img", imageData);
-//     };
-//     reader.readAsDataURL(input.files[0]);
-//   }
-// }

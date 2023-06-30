@@ -145,9 +145,19 @@ a {
   text-align: center;
   display: flex;
 }
-#appointment_form {
-  width: 50%;
+#services_form_container {
+  margin-top: 2%;
+  border: 3px solid #59504c;
+  width: 800px;
+  height: auto;
+  margin-bottom: 2%;
+  border-radius: 3%;
+  padding: 1%;
 }
+#book_now {
+  margin-top: 2%;
+}
+
 #appointment_heading {
   text-align: center;
   width: 100%;
@@ -183,13 +193,6 @@ a {
 #logo {
   font-family: "Dancing Script", cursive;
   font-size: 40px;
-}
-#appointment_form {
-  margin-top: 2%;
-  border: 3px solid #59504c;
-  width: 800px;
-  height: 200px;
-  margin-bottom: 2%;
 }
 
 #booked_service_list {
