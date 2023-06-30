@@ -77,12 +77,26 @@ function populatePetServiceData(e) {
   </ul>
 </div>
   `;
-  var petServiceData = JSON.parse(localStorage.getItem("serviceData"))[petId];
+  let petServiceData = JSON.parse(localStorage.getItem("serviceData"))[petId];
 
-  for (serviceId in petServiceData) {
+  let petServiceDataArr = Object.values(petServiceData);
+
+  function sorter(a, b) {
+    return a["date"] < b["date"] ? 1 : -1;
+  }
+  petServiceDataArr.sort(sorter);
+
+  // for (serviceId in petServiceData) {
+  //   let serviceItem = document.createElement("li");
+
+  //   serviceItem.textContent = `${petServiceData[serviceId]["date"]}, ${petServiceData[serviceId]["time"]}, ${petServiceData[serviceId]["service"]}, ${petServiceData[serviceId]["service-type"]}`;
+  //   document.getElementById("booked_service_list").appendChild(serviceItem);
+  // }
+
+  for (let service of petServiceDataArr) {
     let serviceItem = document.createElement("li");
 
-    serviceItem.textContent = `${petServiceData[serviceId]["date"]}, ${petServiceData[serviceId]["time"]}, ${petServiceData[serviceId]["service"]}, ${petServiceData[serviceId]["service-type"]}`;
+    serviceItem.textContent = `${service["date"]}, ${service["time"]}, ${service["service"]}, ${service["service-type"]}`;
     document.getElementById("booked_service_list").appendChild(serviceItem);
   }
 }
