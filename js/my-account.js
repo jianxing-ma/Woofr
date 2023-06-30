@@ -1,15 +1,20 @@
+
+//___________________________________Page Gloabal Variables_____________________________________
+//______________________________________________________________________________________________
 const pantryAPIBasketPetsUrl =
   "https://getpantry.cloud/apiv1/pantry/0306b1cf-df37-49c7-bdbe-eb369a019f17/basket/PET_DATABASE";
 
 const pantryAPIBasketPetServiceUrl = "https://getpantry.cloud/apiv1/pantry/0306b1cf-df37-49c7-bdbe-eb369a019f17/basket/PET_SERVICE_DATABASE"
 
-const username = JSON.parse(localStorage.getItem("userInfo")).username;
+let username = JSON.parse(localStorage.getItem("userInfo")).username;
+// potential modification: 
+// let userPets = JSON.parse(localStorage.getItem("userPets"));
 let userPets = {};
-let userPetServices = {};
 
+//__________________________________Add EventListeners_______________________________________
+//___________________________________________________________________________________________
 document.addEventListener("DOMContentLoaded", () => {
-  var loadUserPetsDataReturnType = loadUserPetsData();
-  loadUserPetsDataReturnType.then(() => {
+  loadUserPetsData().then(() => {
     populateUserAndPetData(username);
     for (petId in userPets) {
       document
@@ -26,47 +31,18 @@ document.getElementById("add_pet_form").addEventListener("submit", (e) => {
   handleAddPetForm(e);
 });
 
-function loadUserPetsData() {
-  const myHeaders = new Headers();
-  myHeaders.append("Content-Type", "application/json");
 
-  let requestOptions = {
-    method: "GET",
-    headers: myHeaders,
-    redirect: "follow",
-  };
-
-  return fetch(pantryAPIBasketPetsUrl, requestOptions)
-    .then((response) => response.json())
-    .then((data) => {
-      if (data[username] !== undefined) {
-        userPets = data[username];
-        localStorage.setItem("userPets", JSON.stringify(userPets));
-      }
-    })
-    .catch((error) => console.log("error", error));
-}
-
+//__________________________Functions for Handling EventListeners______________________
+//_____________________________________________________________________________________
 function handleAddPetForm(e) {
-  // get data from user
-  const addPetFormName = getInputValue("add_pet_form_name");
-  const addPetFormBreed = getInputValue("add_pet_form_breed");
-  const addPetFormAge = getInputValue("add_pet_form_age");
-  const addPetIsIntact = document.querySelector(
-    'input[name="add_pet_form_is_intact"]:checked'
-  ).value;
-  const addPetShotsUpToDate = document.querySelector(
-    'input[name="add_pet_form_shots_up_to_date"]:checked'
-  ).value;
-
-  const petId = username + "-" + addPetFormName;
-
+  
+  const petId = username + "-" + getInputValue("add_pet_form_name");
   const userPetInfo = {
-    "pet-name": addPetFormName,
-    "pet-breed": addPetFormBreed,
-    "pet-age": addPetFormAge,
-    "pet-is-intact": addPetIsIntact,
-    "pet-shots-up-to-date": addPetShotsUpToDate,
+    "pet-name": getInputValue("add_pet_form_name"),
+    "pet-breed": getInputValue("add_pet_form_breed"),
+    "pet-age": getInputValue("add_pet_form_age"),
+    "pet-is-intact": document.querySelector('input[name="add_pet_form_is_intact"]:checked').value,
+    "pet-shots-up-to-date": document.querySelector('input[name="add_pet_form_shots_up_to_date"]:checked').value,
   };
 
   userPets[petId] = userPetInfo;
@@ -75,21 +51,20 @@ function handleAddPetForm(e) {
   const raw = JSON.stringify(object);
 
   // Initial staging for pushing data to pantry
-  const myHeaders = new Headers();
-  myHeaders.append("Content-Type", "application/json");
-
-  let requestOptions = {
-    method: "PUT",
-    headers: myHeaders,
-    body: raw,
-    redirect: "follow",
-  };
+  const requestOptions = generatePutRequestOptions("PUT", raw);
 
   fetch(pantryAPIBasketPetsUrl, requestOptions)
-    .then(localStorage.setItem("userPets", JSON.stringify(object)))
+    .then( () => {
+      localStorage.setItem("userPets", JSON.stringify(object));
+      // update page pet listing
+      populateUserAndPetData(username);
+    })
     .catch((error) => console.log("error", error));
 }
 
+
+//_______________________Functions for DOM Page Content Generation__________________________
+//__________________________________________________________________________________________
 function populatePetServiceData(e) {
   petId = e.target.getAttribute("id");
 
@@ -100,10 +75,13 @@ function populatePetServiceData(e) {
   </ul>
 </div>
   `;
-  var serviceData = JSON.parse(localStorage.getItem("serviceData"))[petId];
-  for (serviceId in serviceData) {
+  var petServiceData = JSON.parse(localStorage.getItem("serviceData"))[petId];
+
+  for (serviceId in petServiceData) {
     let serviceItem = document.createElement("li");
-    serviceItem.textContent = `${serviceData[serviceId]["date"]}, ${serviceData[serviceId]["time"]}, ${serviceData[serviceId]["service"]}, ${serviceData[serviceId]["service-type"]}`;
+
+    serviceItem.textContent = `${petServiceData[serviceId]["date"]}, ${petServiceData[serviceId]["time"]}, ${petServiceData[serviceId]["service"]}, ${petServiceData[serviceId]["service-type"]}`;
+
     document.getElementById("booked_service_list").appendChild(serviceItem);
   }
 }
@@ -128,27 +106,26 @@ function populateUserAndPetData(username) {
   }
 }
 
-function getUserAndPetData() {
-  document.getElementById("user_account_info").innerHTML = ` 
-  `;
+//_________________________Functions for Loading User Data___________________________
+//___________________________________________________________________________________
+function loadUserPetsData() {
+
+  const requestOptions = generateGetRequestOptions("GET");
+
+  return fetch(pantryAPIBasketPetsUrl, requestOptions)
+    .then((response) => response.json())
+    .then((data) => {
+      if (data[username] !== undefined) {
+        userPets = data[username];
+        localStorage.setItem("userPets", JSON.stringify(data[username]));
+      }
+    })
+    .catch((error) => console.log("error", error));
 }
 
-// helper function to get user input
-function getInputValue(id) {
-  return document.getElementById(id).value;
-}
-
-//_________________________TEMPARARY___________________________
 function loadPetServiceHistoryInAccount() {
   // Load pet service history
-  var myHeaders = new Headers();
-  myHeaders.append("Content-Type", "application/json");
-
-  var requestOptions = {
-    method: "GET",
-    headers: myHeaders,
-    redirect: "follow",
-  };
+  const requestOptions = generateGetRequestOptions("GET");
 
   fetch(pantryAPIBasketPetServiceUrl, requestOptions)
     .then((response) => response.json())
@@ -156,4 +133,36 @@ function loadPetServiceHistoryInAccount() {
       localStorage.setItem("serviceData", JSON.stringify(data))
     })
     .catch((error) => console.log("error", error));
+}
+
+
+//__________________________________________________________________________________________
+//——————————————————————————————————HELPER FUNCTIONS————————————————————————————————————————
+// Database Helper Functions
+function generatePutRequestOptions(action, raw) {
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  return {
+      method: action,
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+  };
+}
+
+function generateGetRequestOptions(action) {
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  return {
+      method: action,
+      headers: myHeaders,
+      redirect: "follow",
+  };
+}
+
+// helper function to get user input
+function getInputValue(id) {
+  return document.getElementById(id).value;
 }
