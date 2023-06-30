@@ -71,6 +71,7 @@ body {
 #boarding_card {
   position: relative;
   margin-top: 30px;
+  margin-bottom: 2%;
 }
 /* create a card class for the three cards to edit it all at once */
 .services-card {
@@ -105,6 +106,7 @@ body {
   height: auto;
   background-color: #ded9d7;
   padding: 2%;
+  margin-bottom: 2%;
 }
 
 #message_container {
@@ -143,9 +145,19 @@ a {
   text-align: center;
   display: flex;
 }
-#appointment_form {
-  width: 50%;
+#services_form_container {
+  margin-top: 2%;
+  border: 3px solid #59504c;
+  width: 800px;
+  height: auto;
+  margin-bottom: 2%;
+  border-radius: 3%;
+  padding: 1%;
 }
+#book_now {
+  margin-top: 2%;
+}
+
 #appointment_heading {
   text-align: center;
   width: 100%;
@@ -177,6 +189,10 @@ a {
 
 .services-history {
   text-align: center;
+}
+#logo {
+  font-family: "Dancing Script", cursive;
+  font-size: 40px;
 }
 
 #booked_service_list {
@@ -214,9 +230,9 @@ a {
   width: 100%;
   color: white;
 }
-#appointment_form {
+/* #appointment_form {
   margin-bottom: 20px;
-}
+} */
 #user_img {
   max-width: 75%;
   max-height: 75%;

@@ -13,7 +13,8 @@ document
   .querySelector("#service_selector")
   .addEventListener("change", handleServiceSelection);
 
-document.getElementById("appointment_form")
+document
+  .getElementById("appointment_form")
   .addEventListener("submit", (e) => handleFormSubmission(e));
 
 //__________________________Functions for Handling EventListeners______________________
@@ -76,7 +77,6 @@ function handleFormSubmission(e) {
   );
 }
 
-
 //_______________________Functions for DOM Page Content Generation__________________________
 //__________________________________________________________________________________________
 
@@ -138,6 +138,36 @@ function handleServiceSelection() {
   }
 }
 
+const alertPlaceholder = document.getElementById("liveAlertPlaceholder");
+const appendAlert = (message, type) => {
+  const wrapper = document.createElement("div");
+  wrapper.innerHTML = [
+    `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+    `   <div>${message}</div>`,
+    '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+    "</div>",
+  ].join("");
+
+  alertPlaceholder.append(wrapper);
+
+  setTimeout(() => {
+    wrapper.remove();
+  }, 2000);
+};
+
+const alertTrigger = document.getElementById("liveAlertBtn");
+if (alertTrigger) {
+  alertTrigger.addEventListener("click", () => {
+    const formData = new FormData(document.getElementById("add_pet_form"));
+    const petName = document.getElementById("add_pet_form_name").value;
+    const petType = document.getElementById("add_pet_form_breed").value;
+    if (petName === "" || petType === "") {
+      appendAlert("Please fill in all required fields.", "danger");
+    } else {
+      appendAlert("Nice, you successfully added a pet!", "success");
+    }
+  });
+}
 
 //_________________________Functions for Loading User Data___________________________
 //___________________________________________________________________________________

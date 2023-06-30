@@ -8,6 +8,7 @@ const pantryAPIBasketPetServiceUrl =
 
 let username = JSON.parse(localStorage.getItem("userInfo")).username;
 let userPets = {};
+let userPetPhoto;
 
 //__________________________________Add EventListeners_______________________________________
 //___________________________________________________________________________________________
@@ -15,9 +16,9 @@ document.addEventListener("DOMContentLoaded", () => {
   loadUserPetsData().then(() => {
     populateUserAndPetData(username);
     for (petId in userPets) {
-      document
-        .getElementById(petId)
-        .addEventListener("click", (e) => populatePetServiceData(e));
+      document.getElementById(petId).addEventListener("click", (e) => {
+        populatePetServiceData(e);
+      });
     }
   });
 
@@ -82,7 +83,6 @@ function populatePetServiceData(e) {
     let serviceItem = document.createElement("li");
 
     serviceItem.textContent = `${petServiceData[serviceId]["date"]}, ${petServiceData[serviceId]["time"]}, ${petServiceData[serviceId]["service"]}, ${petServiceData[serviceId]["service-type"]}`;
-
     document.getElementById("booked_service_list").appendChild(serviceItem);
   }
 }
@@ -203,32 +203,3 @@ function generateGetRequestOptions(action) {
 function getInputValue(id) {
   return document.getElementById(id).value;
 }
-
-
-// user generated image code
-
-// var imageInput = document.getElementById("pet_img_input");
-
-// imageInput.addEventListener("change", function () {
-//   changeImage(this);
-// });
-
-// function changeImage(input) {
-//   var reader;
-
-//   if (input.files && input.files[0]) {
-//     reader = new FileReader();
-
-//     reader.onload = function (e) {
-//       document.getElementById("user_img_container").innerHTML = `
-//         <img
-//         id="user_img"
-//         src="${e.target.result}"
-//         alt="User Profile Image"
-//       />
-//       `;
-//       localStorage.setItem("user_img", imageData);
-//     };
-//     reader.readAsDataURL(input.files[0]);
-//   }
-// }
