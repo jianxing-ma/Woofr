@@ -30,9 +30,11 @@ body {
   background-color: #59504c;
 }
 #user_container {
-  display: flex;
+  /* display: flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; */
+  position: relative;
+
   background-color: #59504c;
 }
 #user_account_info {
@@ -139,7 +141,7 @@ a {
 #services_container {
   justify-content: center;
   text-align: center;
-  display:flex;
+  display: flex;
 }
 #appointment_form {
   width: 50%;
@@ -150,4 +152,29 @@ a {
 }
 #tab_register {
   color: black;
+}
+.pet-li,
+#updated_pet_list {
+  background-color: #676565c7;
+}
+
+#userNameButton,
+#add_pet_button {
+  background-color: #ded9d7;
+  color: black;
+}
+#add_pet_form_test {
+  margin-right: 4%;
+  margin-bottom: 1px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+#history_booked_services_container {
+  padding: 1%;
+}
+
+.services-history {
+  text-align: center;
 }
