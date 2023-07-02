@@ -1,2 +1,2 @@
-# Team-Woofr
-JS Team One (Team Woofr) Project
+Woofr
+A further personal development based on a team project.
