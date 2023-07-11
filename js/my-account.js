@@ -87,25 +87,23 @@ function populatePetServiceData(e) {
   `;
   let petServiceData = JSON.parse(localStorage.getItem("serviceData"))[petId];
 
-  let petServiceDataArr = Object.values(petServiceData);
+  let petServiceDataArr = {};
+
+  if (petServiceData) {
+    petServiceDataArr = Object.values(petServiceData);
+
+    petServiceDataArr.sort(sorter);
+
+    for (let service of petServiceDataArr) {
+      let serviceItem = document.createElement("li");
+  
+      serviceItem.textContent = `${service["date"]}, ${service["time"]}, ${service["service"]}, ${service["service-type"]}`;
+      document.getElementById("booked_service_list").appendChild(serviceItem);
+    }
+  }
 
   function sorter(a, b) {
     return a["date"] < b["date"] ? 1 : -1;
-  }
-  petServiceDataArr.sort(sorter);
-
-  // for (serviceId in petServiceData) {
-  //   let serviceItem = document.createElement("li");
-
-  //   serviceItem.textContent = `${petServiceData[serviceId]["date"]}, ${petServiceData[serviceId]["time"]}, ${petServiceData[serviceId]["service"]}, ${petServiceData[serviceId]["service-type"]}`;
-  //   document.getElementById("booked_service_list").appendChild(serviceItem);
-  // }
-
-  for (let service of petServiceDataArr) {
-    let serviceItem = document.createElement("li");
-
-    serviceItem.textContent = `${service["date"]}, ${service["time"]}, ${service["service"]}, ${service["service-type"]}`;
-    document.getElementById("booked_service_list").appendChild(serviceItem);
   }
 }
 
