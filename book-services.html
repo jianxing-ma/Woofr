@@ -23,10 +23,13 @@
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <nav
+        class="navbar navbar-expand-sm fixed-top bg-body-tertiary"
+        data-bs-theme="dark"
+      >
         <div class="container-fluid">
           <a id="logo" class="navbar-brand" href="./index.html">Woofr</a>
-            <button
+          <button
             class="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
@@ -47,34 +50,19 @@
                   >Home</a
                 >
               </li>
-              <li class="nav-item dropdown">
+              <li class="nav-item">
                 <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
+                  class="nav-link"
+                  href="./services-description.html"
                   role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
                 >
                   Services
                 </a>
-                <ul class="dropdown-menu">
-                  <li>
-                    <a class="dropdown-item" href="./services-description.html"
-                      >Services Offered</a
-                    >
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="./book-services.html"
-                      >Book Services</a
-                    >
-                  </li>
-                  <li><hr class="dropdown-divider" /></li>
-                  <li>
-                    <a class="dropdown-item" href="./contact-us.html"
-                      >Contact Us</a
-                    >
-                  </li>
-                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./contact-us.html" role="button">
+                  Contact Us
+                </a>
               </li>
             </ul>
             <li id="login_btn_container" class="d-flex"></li>
@@ -82,6 +70,7 @@
         </div>
       </nav>
     </header>
+    
     <div id="working_dog" class="hero-image">
 
       <div id="services-title" class="hero-text">
