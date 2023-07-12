@@ -54,7 +54,15 @@ function handleAddPetForm(e) {
   const raw = JSON.stringify(object);
 
   // Initial staging for pushing data to pantry
-  const requestOptions = generatePutRequestOptions("PUT", raw);
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  const requestOptions =  {
+    method: "PUT",
+    headers: myHeaders,
+    body: raw,
+    redirect: "follow",
+  };
 
   fetch(pantryAPIBasketPetsUrl, requestOptions)
     .then(() => {
@@ -79,25 +87,23 @@ function populatePetServiceData(e) {
   `;
   let petServiceData = JSON.parse(localStorage.getItem("serviceData"))[petId];
 
-  let petServiceDataArr = Object.values(petServiceData);
+  let petServiceDataArr = {};
+
+  if (petServiceData) {
+    petServiceDataArr = Object.values(petServiceData);
+
+    petServiceDataArr.sort(sorter);
+
+    for (let service of petServiceDataArr) {
+      let serviceItem = document.createElement("li");
+  
+      serviceItem.textContent = `${service["date"]}, ${service["time"]}, ${service["service"]}, ${service["service-type"]}`;
+      document.getElementById("booked_service_list").appendChild(serviceItem);
+    }
+  }
 
   function sorter(a, b) {
     return a["date"] < b["date"] ? 1 : -1;
-  }
-  petServiceDataArr.sort(sorter);
-
-  // for (serviceId in petServiceData) {
-  //   let serviceItem = document.createElement("li");
-
-  //   serviceItem.textContent = `${petServiceData[serviceId]["date"]}, ${petServiceData[serviceId]["time"]}, ${petServiceData[serviceId]["service"]}, ${petServiceData[serviceId]["service-type"]}`;
-  //   document.getElementById("booked_service_list").appendChild(serviceItem);
-  // }
-
-  for (let service of petServiceDataArr) {
-    let serviceItem = document.createElement("li");
-
-    serviceItem.textContent = `${service["date"]}, ${service["time"]}, ${service["service"]}, ${service["service-type"]}`;
-    document.getElementById("booked_service_list").appendChild(serviceItem);
   }
 }
 
@@ -162,7 +168,14 @@ if (alertTrigger) {
 //_________________________Functions for Loading User Data___________________________
 //___________________________________________________________________________________
 function loadUserPetsData() {
-  const requestOptions = generateGetRequestOptions("GET");
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  const requestOptions =  {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow",
+  };
 
   return fetch(pantryAPIBasketPetsUrl, requestOptions)
     .then((response) => response.json())
@@ -177,7 +190,14 @@ function loadUserPetsData() {
 
 function loadPetServiceHistoryInAccount() {
   // Load pet service history
-  const requestOptions = generateGetRequestOptions("GET");
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  const requestOptions =  {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow",
+  };
 
   fetch(pantryAPIBasketPetServiceUrl, requestOptions)
     .then((response) => response.json())
@@ -189,29 +209,6 @@ function loadPetServiceHistoryInAccount() {
 
 //__________________________________________________________________________________________
 //——————————————————————————————————HELPER FUNCTIONS————————————————————————————————————————
-// Database Helper Functions
-function generatePutRequestOptions(action, raw) {
-  const myHeaders = new Headers();
-  myHeaders.append("Content-Type", "application/json");
-
-  return {
-    method: action,
-    headers: myHeaders,
-    body: raw,
-    redirect: "follow",
-  };
-}
-
-function generateGetRequestOptions(action) {
-  const myHeaders = new Headers();
-  myHeaders.append("Content-Type", "application/json");
-
-  return {
-    method: action,
-    headers: myHeaders,
-    redirect: "follow",
-  };
-}
 
 // helper function to get user input
 function getInputValue(id) {

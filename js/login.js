@@ -1,18 +1,10 @@
+import { generateLoginModal } from "./login-helper.js";
 // import { loadUserPetsData } from "./my-account.js";
 const pantryAPIBasketUserUrl =
   "https://getpantry.cloud/apiv1/pantry/0306b1cf-df37-49c7-bdbe-eb369a019f17/basket/USER_ACCOUNT_DATABASE";
 
 // check user login status, and update login related elements accordingly
 export function validateLogin() {
-  if (typeof pills_register_form != "undefined") {
-    pills_register_form.addEventListener("submit", (e) =>
-      handleAccountRegister(e)
-    );
-  }
-
-  if (typeof pills_login_form != "undefined") {
-    pills_login_form.addEventListener("submit", (e) => handleAccountLogin(e));
-  }
 
   if (JSON.parse(localStorage.getItem("userInfo"))) {
     const profileButton = document.createElement("div");
@@ -30,15 +22,13 @@ export function validateLogin() {
                 <li><a class="dropdown-item active" href="my-account.html">My Account</a></li>
                 <li><a class="dropdown-item" href="book-services.html">Book A Service</a></li>
                 <li><hr class="dropdown-divider" /></li>
-                <li><a id="btn_sign_out" class="dropdown-item">Sign Out</a></li>
+                <li><a id="btn_sign_out" class="dropdown-item" href="index.html">Sign Out</a></li>
             </ul>
         </div>
         `;
 
     login_btn_container.innerHTML = "";
     login_btn_container.append(profileButton);
-
-    // loadUserPetsData();
 
     document.getElementById("btn_sign_out").addEventListener("click", () => {
       localStorage.clear();
@@ -47,16 +37,23 @@ export function validateLogin() {
   } else {
     const loginButton = document.createElement("div");
     loginButton.innerHTML = `
-        <a id="login_btn" class="btn btn-primary" href="./login.html">Login</a>
+        <a id="login_btn" class="btn btn-primary border-0" data-bs-toggle="modal"
+        data-bs-target="#exampleModal">Login</a>
         `;
+
     login_btn_container.innerHTML = "";
     login_btn_container.append(loginButton);
+    document.getElementById("page_header_container").append(generateLoginModal());
+
+    pills_register_form.addEventListener("submit", (e) => handleAccountRegister(e));
+    pills_login_form.addEventListener("submit", (e) => handleAccountLogin(e));
   }
 }
 
 //___________________________________________________________________________
 //____________________________ Registration__________________________________
 //___________________________________________________________________________
+
 export function handleAccountRegister(e) {
   e.preventDefault();
 

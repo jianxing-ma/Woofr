@@ -17,81 +17,77 @@
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
       crossorigin="anonymous"
     />
+    <!-- Font-Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
+    />
     <!-- our style -->
     <link rel="stylesheet" href="./css/styles.css" />
     <title>Woofr</title>
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a id="logo" class="navbar-brand" href="./index.html">Woofr</a>
+      <div id="page_header_container">
+        <nav
+          class="navbar navbar-expand-sm fixed-top bg-body-tertiary"
+          data-bs-theme="dark"
+        >
+          <div class="container-fluid">
+            <a id="logo" class="navbar-brand" href="./index.html">Woofr</a>
             <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a
-                  class="nav-link active"
-                  aria-current="page"
-                  href="./index.html"
-                  >Home</a
-                >
-              </li>
-              <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Services
-                </a>
-                <ul class="dropdown-menu">
-                  <li>
-                    <a class="dropdown-item" href="./services-description.html"
-                      >Services Offered</a
-                    >
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="./book-services.html"
-                      >Book Services</a
-                    >
-                  </li>
-                  <li><hr class="dropdown-divider" /></li>
-                  <li>
-                    <a class="dropdown-item" href="./contact-us.html"
-                      >Contact Us</a
-                    >
-                  </li>
-                </ul>
-              </li>
-            </ul>
-            <li id="login_btn_container" class="d-flex"></li>
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a
+                    class="nav-link active"
+                    aria-current="page"
+                    href="./index.html"
+                    >Home</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    href="./services-description.html"
+                    role="button"
+                  >
+                    Services
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./contact-us.html" role="button">
+                    Contact Us
+                  </a>
+                </li>
+              </ul>
+              <li id="login_btn_container" class="d-flex"></li>
+            </div>
           </div>
-        </div>
-      </nav>
-    </header>
-    <div id="working_dog" class="hero-image">
-
-      <div id="services-title" class="hero-text">
-
-        <h1>Book Our Services</h1>
-
+        </nav>
       </div>
-
-    </div>
+    </header>
+    
     <main id="services_container">
+      <div id="working_dog" class="hero-image">
+
+        <div id="services-title" class="hero-text">
+  
+          <h1>Book Our Services</h1>
+  
+        </div>
+  
+      </div>
       <div id="services_form_container">
       <form action="" id="appointment_form">
         <select

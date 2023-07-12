@@ -17,275 +17,273 @@
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
       crossorigin="anonymous"
     />
+    <!-- Font-Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
+    />
     <!-- our style -->
     <link rel="stylesheet" href="./css/styles.css" />
     <title>Woofr</title>
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a id="logo" class="navbar-brand" href="./index.html">Woofr</a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a
-                  class="nav-link active"
-                  aria-current="page"
-                  href="./index.html"
-                  >Home</a
-                >
-              </li>
-              <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Services
-                </a>
-                <ul class="dropdown-menu">
-                  <li>
-                    <a class="dropdown-item" href="./services-description.html"
-                      >Services Offered</a
-                    >
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="./book-services.html"
-                      >Book Services</a
-                    >
-                  </li>
-                  <li><hr class="dropdown-divider" /></li>
-                  <li>
-                    <a class="dropdown-item" href="./contact-us.html"
-                      >Contact Us</a
-                    >
-                  </li>
-                </ul>
-              </li>
-            </ul>
-            <li id="login_btn_container" class="d-flex"></li>
+      <div id="page_header_container">
+        <nav
+          class="navbar navbar-expand-sm fixed-top bg-body-tertiary"
+          data-bs-theme="dark"
+        >
+          <div class="container-fluid">
+            <a id="logo" class="navbar-brand" href="./index.html">Woofr</a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a
+                    class="nav-link active"
+                    aria-current="page"
+                    href="./index.html"
+                    >Home</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    href="./services-description.html"
+                    role="button"
+                  >
+                    Services
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./contact-us.html" role="button">
+                    Contact Us
+                  </a>
+                </li>
+              </ul>
+              <li id="login_btn_container" class="d-flex"></li>
+            </div>
           </div>
-        </div>
-      </nav>
-    </header>
-    <div class="row">
-      <div id="user_img_container" class="col-sm-6">
-        <img
-          id="user_img"
-          src="./images/place_holder.jpg"
-          alt="dog place holder image"
-        />
+        </nav>
       </div>
-      <div id="user_container" class="col-sm-6">
-        <div
-          id="user_account_info"
-          class="btn-group col-sm-8 col-md-8 col-lg-8"
-        ></div>
-        <div id="add_pet_form_test">
-          <button
-            type="button"
-            id="add_pet_button"
-            class="btn"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
-            data-bs-whatever="@getbootstrap"
-          >
-            Add Pet
-          </button>
+    </header>
 
+    <main>
+      <div class="row">
+        <div id="user_img_container" class="col-sm-6">
+          <img
+            id="user_img"
+            src="./images/place_holder.jpg"
+            alt="dog place holder image"
+          />
+        </div>
+        <div id="user_container" class="col-sm-6">
           <div
-            class="modal fade"
-            id="exampleModal"
-            tabindex="-1"
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true"
-          >
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="exampleModalLabel">
-                    Add New Pet
-                  </h1>
-                  <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  ></button>
-                </div>
-                <div class="modal-body">
-                  <form id="add_pet_form">
-                    <div class="row mb-3">
-                      <label
-                        for="add_pet_form_name"
-                        class="col-sm-2 col-form-label"
-                        >*Name</label
-                      >
-                      <div class="col-sm-10">
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="add_pet_form_name"
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div class="row mb-3">
-                      <label
-                        for="add_pet_form_breed"
-                        class="col-sm-2 col-form-label"
-                        >*Breed</label
-                      >
-                      <div class="col-sm-10">
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="add_pet_form_breed"
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div class="row mb-3">
-                      <label
-                        for="add_pet_form_age"
-                        class="col-sm-2 col-form-label"
-                        >Age</label
-                      >
-                      <div class="col-sm-10">
-                        <input
-                          type="number"
-                          class="form-control"
-                          id="add_pet_form_age"
-                        />
-                      </div>
-                    </div>
-                    <div class="row mb-3">
-                      <label
-                        for="add_pet_form_age"
-                        class="col-sm-2 col-form-label"
-                        >Dog Photo</label
-                      >
-                      <div class="col-sm-10">
-                        <input
-                          type="file"
-                          class="form-control"
-                          id="add_pet_form_photo"
-                        />
-                      </div>
-                    </div>
-                    <fieldset class="row mb-3">
-                      <legend class="col-form-label col-sm-2 pt-0">
-                        Intact
-                      </legend>
-                      <div class="col-sm-10">
-                        <div class="form-check">
-                          <input
-                            class="form-check-input"
-                            type="radio"
-                            name="add_pet_form_is_intact"
-                            id="add_pet_form_is_intact"
-                            value="true"
-                            checked
-                          />
-                          <label
-                            class="form-check-label"
-                            for="add_pet_form_is_intact"
-                          >
-                            Yes
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input
-                            class="form-check-input"
-                            type="radio"
-                            name="add_pet_form_is_intact"
-                            id="add_pet_form_is_not_intact"
-                            value="false"
-                          />
-                          <label
-                            class="form-check-label"
-                            for="add_pet_form_is_not_intact"
-                          >
-                            No
-                          </label>
-                        </div>
-                      </div>
-                    </fieldset>
-                    <fieldset class="row mb-3">
-                      <legend class="col-form-label col-sm-2 pt-1">
-                        Shots Up to Date
-                      </legend>
-                      <div class="col-sm-10">
-                        <div class="form-check">
-                          <input
-                            class="form-check-input"
-                            type="radio"
-                            name="add_pet_form_shots_up_to_date"
-                            id="add_pet_form_shots_up_to_date"
-                            value="true"
-                            checked
-                          />
-                          <label
-                            class="form-check-label"
-                            for="add_pet_form_shots_up_to_date"
-                          >
-                            Yes
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input
-                            class="form-check-input"
-                            type="radio"
-                            name="add_pet_form_shots_up_to_date"
-                            id="add_pet_form_shots_not_up_to_date"
-                            value="false"
-                          />
-                          <label
-                            class="form-check-label"
-                            for="add_pet_form_shots_not_up_to_date"
-                          >
-                            No
-                          </label>
-                        </div>
-                      </div>
-                    </fieldset>
-                    <div id="liveAlertPlaceholder"></div>
+            id="user_account_info"
+            class="btn-group col-sm-8 col-md-8 col-lg-8"
+          ></div>
+          <div id="add_pet_form_test">
+            <button
+              type="button"
+              id="add_pet_button"
+              class="btn"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+              data-bs-whatever="@getbootstrap"
+            >
+              Add Pet
+            </button>
+
+            <div
+              class="modal fade"
+              id="exampleModal"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">
+                      Add New Pet
+                    </h1>
                     <button
-                      id="liveAlertBtn"
-                      type="submit"
-                      class="btn btn-primary"
-                    >
-                      Add
-                    </button>
-                  </form>
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <form id="add_pet_form">
+                      <div class="row mb-3">
+                        <label
+                          for="add_pet_form_name"
+                          class="col-sm-2 col-form-label"
+                          >*Name</label
+                        >
+                        <div class="col-sm-10">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="add_pet_form_name"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div class="row mb-3">
+                        <label
+                          for="add_pet_form_breed"
+                          class="col-sm-2 col-form-label"
+                          >*Breed</label
+                        >
+                        <div class="col-sm-10">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="add_pet_form_breed"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div class="row mb-3">
+                        <label
+                          for="add_pet_form_age"
+                          class="col-sm-2 col-form-label"
+                          >Age</label
+                        >
+                        <div class="col-sm-10">
+                          <input
+                            type="number"
+                            class="form-control"
+                            id="add_pet_form_age"
+                          />
+                        </div>
+                      </div>
+                      <div class="row mb-3">
+                        <label
+                          for="add_pet_form_age"
+                          class="col-sm-2 col-form-label"
+                          >Dog Photo</label
+                        >
+                        <div class="col-sm-10">
+                          <input
+                            type="file"
+                            class="form-control"
+                            id="add_pet_form_photo"
+                          />
+                        </div>
+                      </div>
+                      <fieldset class="row mb-3">
+                        <legend class="col-form-label col-sm-2 pt-0">
+                          Intact
+                        </legend>
+                        <div class="col-sm-10">
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="add_pet_form_is_intact"
+                              id="add_pet_form_is_intact"
+                              value="true"
+                              checked
+                            />
+                            <label
+                              class="form-check-label"
+                              for="add_pet_form_is_intact"
+                            >
+                              Yes
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="add_pet_form_is_intact"
+                              id="add_pet_form_is_not_intact"
+                              value="false"
+                            />
+                            <label
+                              class="form-check-label"
+                              for="add_pet_form_is_not_intact"
+                            >
+                              No
+                            </label>
+                          </div>
+                        </div>
+                      </fieldset>
+                      <fieldset class="row mb-3">
+                        <legend class="col-form-label col-sm-2 pt-1">
+                          Shots Up to Date
+                        </legend>
+                        <div class="col-sm-10">
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="add_pet_form_shots_up_to_date"
+                              id="add_pet_form_shots_up_to_date"
+                              value="true"
+                              checked
+                            />
+                            <label
+                              class="form-check-label"
+                              for="add_pet_form_shots_up_to_date"
+                            >
+                              Yes
+                            </label>
+                          </div>
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="add_pet_form_shots_up_to_date"
+                              id="add_pet_form_shots_not_up_to_date"
+                              value="false"
+                            />
+                            <label
+                              class="form-check-label"
+                              for="add_pet_form_shots_not_up_to_date"
+                            >
+                              No
+                            </label>
+                          </div>
+                        </div>
+                      </fieldset>
+                      <div id="liveAlertPlaceholder"></div>
+                      <button
+                        id="liveAlertBtn"
+                        type="submit"
+                        class="btn btn-primary"
+                      >
+                        Add
+                      </button>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div id="history_booked_services_container" class="row">
-      <div id="history_container" class="col-sm-6">
-        <h4 class="services-history">Booked services</h4>
+      <div id="history_booked_services_container" class="row">
+        <div id="history_container" class="col-sm-6">
+          <h4 class="services-history">Booked services</h4>
+        </div>
+        <div id="booked_services" class="col-sm-6"></div>
       </div>
-      <div id="booked_services" class="col-sm-6"></div>
-    </div>
+    </main>
 
     <footer class="footer">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
