@@ -1,113 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- google font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cabin:ital@1&family=Caveat&family=Dancing+Script&family=Montserrat&family=Nanum+Myeongjo&family=Open+Sans:ital,wght@1,300&display=swap"
-      rel="stylesheet"
-    />
+export function generateLoginModal() {
 
-    <!-- Bootstrap -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-      crossorigin="anonymous"
-    />
-
-    <!-- Font-Awesome -->
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
-    />
-
-    <!-- Local CSS -->
-    <link rel="stylesheet" href="./css/styles.css" />
-    <title>Woofr</title>
-  </head>
-  <body>
-    <header>
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a id="logo" class="navbar-brand" href="./index.html">Woofr</a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a
-                  class="nav-link active"
-                  aria-current="page"
-                  href="./index.html"
-                  >Home</a
-                >
-              </li>
-              <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Services
-                </a>
-                <ul class="dropdown-menu">
-                  <li>
-                    <a class="dropdown-item" href="./services-description.html"
-                      >Services Offered</a
-                    >
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="./book-services.html"
-                      >Book Services</a
-                    >
-                  </li>
-                  <li><hr class="dropdown-divider" /></li>
-                  <li>
-                    <a class="dropdown-item" href="./contact-us.html"
-                      >Contact Us</a
-                    >
-                  </li>
-                </ul>
-              </li>
-            </ul>
-            <a id="login_btn_container" class="d-flex"></a>
-          </div>
-        </div>
-      </nav>
-    </header>
-
-    <main>
-      <!-- Login Container -->
-
-      <!-- Modal Demo -->
-      <!-- Button trigger modal -->
-
-      <button
-        type="button"
-        class="btn btn-primary"
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
-      >
-        TEST
-      </button>
-
-      <!-- Modal -->
-      <div
+  let loginModal = document.createElement("div");
+  
+  loginModal.innerHTML = `
+    <div
         class="modal fade"
         id="exampleModal"
         tabindex="-1"
@@ -379,35 +275,6 @@
           </div>
         </div>
       </div>
-    </main>
-
-    <footer class="footer">
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-          <ul class="navbar-nav mx-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="./index.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="./contact-us.html">Contact</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="./services-description.html"
-                >Services</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="./book-services.html">Book Services</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </footer>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-      crossorigin="anonymous"
-    ></script>
-    <script src="./js/script.js" type="module"></script>
-  </body>
-</html>
+    `
+    return loginModal;
+}
